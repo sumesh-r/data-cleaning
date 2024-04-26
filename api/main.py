@@ -13,14 +13,6 @@ EXPORT_PATH="/mnt/dump/code/data-cleaning/public/"
 
 
 
-df = pd.read_csv("/home/sumesh/Downloads/onlinefoods.csv")
-# computing number of rows
-rows = len(df.axes[0])
- 
-# computing number of columns
-cols = len(df.axes[1])
-
-
 # Iterate through columns and create plots dynamically
 # for column in df.columns:
 #     plt.figure()  # Create a new figure for each plot
@@ -35,19 +27,6 @@ cols = len(df.axes[1])
 #     # Save the plot as an image file
 #     plt.savefig(f'{column}_plot.png')
 
-
-
-
-@api.route('/rowcol', methods=['POST','OPTIONS'])
-def get_rowcol():
-    if request.method == 'OPTIONS':
-        response = jsonify(success=True)
-        return response
-    params = request.json
-    df = pd.read_csv(params.get('file'))
-    response = jsonify({"rows":rows, "cols": cols})
-
-    return response
 
 @api.route('/images', methods=['POST','OPTIONS'])
 def get_images_before_cleaning():
